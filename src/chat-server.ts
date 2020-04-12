@@ -1,13 +1,18 @@
 import * as express from 'express';
+import { createServer, Server } from 'http'; 
 
 export class ChatServer {
+
+
     public static readonly PORT:number = 5000;
     private app: express.Application;
     private port: string | number;
+    private server: Server;
 
     constructor() {
         this.createApp();
         this.config();
+        this.createServer();
         this.listen();
     }
 
@@ -20,7 +25,13 @@ export class ChatServer {
     }
 
     private listen(): void {
-        this.app.listen(this.port);
+        this.app.listen(this.port, () => {
+            console.log('Running server on port %s', this.port);
+        });
+    }
+
+    private createServer(): void {
+        this.server = createServer(this.app);
     }
 
     public getApp(): express.Application {
