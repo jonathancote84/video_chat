@@ -43,19 +43,19 @@ export class ChatServer {
                 this.io.emit('remove-user', socket.id);
             })
 
-            socket.on('make-offer', (data) => {
-                socket.to(data.to).emit('offer-made', {
-                    offer: data.offer,
-                    socket: socket.id
-                });
-            });
+            // socket.on('make-offer', (data) => {
+            //     socket.to(data.to).emit('offer-made', {
+            //         offer: data.offer,
+            //         socket: socket.id
+            //     });
+            // });
 
-            socket.on('make-answer', (data) => {
-                socket.to(data.to).emit('answer-made', {
-                    socket: socket.id,
-                    answer: data.answer
-                });
-            });
+            // socket.on('make-answer', (data) => {
+            //     socket.to(data.to).emit('answer-made', {
+            //         socket: socket.id,
+            //         answer: data.answer
+            //     });
+            // });
 
         });
     }
@@ -67,6 +67,7 @@ export class ChatServer {
     private sockets(): void {
         this.io = socketIo(this.server);
     }
+
 
     public getApp(): express.Application {
         return this.app;

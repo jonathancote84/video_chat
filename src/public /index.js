@@ -18,3 +18,8 @@ socket.on('add-users', function (data) {
         document.getElementById('users').appendChild(el);
     }
 });
+
+socket.on('remove-user', function (id) {
+    var div = document.getElementById(id);
+    document.getElementById('users').removeChild(div);
+});
